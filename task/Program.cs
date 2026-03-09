@@ -1,11 +1,3 @@
-//using task;
-
-//var builder = Host.CreateApplicationBuilder(args);
-//builder.Services.AddHostedService<Worker>();
-
-//var host = builder.Build();
-//host.Run();
-
 using Microsoft.EntityFrameworkCore;
 using task.Infrastructure;
 using task.Services;
