@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Code": "OFF001",
+    "CityCode": 100,
+    "Uuid": "uuid-1",
+    "Type": 1,
+    "CountryCode": "RU",
+    "Coordinates": {
+      "Latitude": 55.751244,
+      "Longitude": 37.618423
+    },
+    "Address": {
+      "Street": "Тверская ул., 1",
+      "City": "Москва",
+      "Region": "Московская область"
+    },
+    "WorkTime": "09:00-18:00",
+    "Phones": [
+      { "Number": "+7 495 123-45-67" }
+    ]
+  },
+  {
+    "Id": 2,
+    "Code": "OFF002",
+    "CityCode": 200,
+    "Uuid": "uuid-2",
+    "Type": 2,
+    "CountryCode": "RU",
+    "Coordinates": {
+      "Latitude": 59.9386,
+      "Longitude": 30.3141
+    },
+    "Address": {
+      "Street": "Невский пр., 10",
+      "City": "Санкт-Петербург",
+      "Region": "Ленинградская область"
+    },
+    "WorkTime": "10:00-19:00",
+    "Phones": [
+      { "Number": "+7 812 987-65-43" }
+    ]
+  }
+]

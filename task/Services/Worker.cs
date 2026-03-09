@@ -1,4 +1,4 @@
-namespace task;
+namespace task.Services;
 
 public class Worker : BackgroundService
 {

@@ -1,8 +1,8 @@
-﻿namespace task.Entities
+﻿namespace task.Entities;
+
+public enum OfficeType
 {
-    public enum OfficeType
-    {
-        Terminal,
-        PickupPoint
-    }
+    PVZ,
+    POSTAMAT,
+    WAREHOUSE
 }

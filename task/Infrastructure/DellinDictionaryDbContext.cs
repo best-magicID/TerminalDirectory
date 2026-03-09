@@ -1,32 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using task.Entities;
 
-namespace task.Infrastructure
+namespace task.Infrastructure;
+
+public class DellinDictionaryDbContext : DbContext
 {
-    public class DellinDictionaryDbContext : DbContext
+    public DellinDictionaryDbContext(DbContextOptions<DellinDictionaryDbContext> options) 
+        : base(options) 
+    { 
+
+    }
+
+    public DbSet<Office> Offices { get; set; }
+    public DbSet<Phone> Phones { get; set; }
+
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        public DbSet<Office> Offices { get; set; }
+        base.OnModelCreating(builder);
 
-
-        public DellinDictionaryDbContext(
-            DbContextOptions<DellinDictionaryDbContext> options)
-            : base(options)
+        builder.Entity<Office>(entity =>
         {
-        }
+            entity.HasIndex(o => o.CityCode);
+            entity.HasIndex(o => o.Code);
 
+            entity.OwnsOne(o => o.Coordinates);
+            entity.OwnsOne(o => o.Phones);
+        });
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        builder.Entity<Phone>(entity =>
         {
-            base.OnModelCreating(builder);
+            entity.HasIndex(p => p.OfficeId);
+        });
 
-            builder.ApplyConfigurationsFromAssembly(
-                Assembly.GetExecutingAssembly());
-        }
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

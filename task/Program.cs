@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using task.Infrastructure;
 using task.Services;
 
+//var builder = WebApplication.CreateBuilder(args);
 var builder = Host.CreateApplicationBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("Postgres");
@@ -13,8 +14,8 @@ builder.Services.AddDbContext<DellinDictionaryDbContext>(options =>
 // Регистрация фонового сервиса
 builder.Services.AddHostedService<TerminalImportService>();
 
-// Сборка приложения
-var app = builder.Build();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
-// Запуск
+var app = builder.Build();
 app.Run();

@@ -1,20 +1,22 @@
-﻿namespace task.Entities
+﻿namespace task.Entities;
+
+public class Address
 {
-    public class Address
-    {
-        /// <summary>
-        /// Улица
-        /// </summary>
-        public string Street { get; set; } = "";
+    /// <summary>
+    /// Улица
+    /// </summary>
+    public string Street { get; set; } = "";
 
-        /// <summary>
-        /// Город
-        /// </summary>
-        public string City { get; set; } = "";
+    /// <summary>
+    /// Город
+    /// </summary>
+    public string City { get; set; } = "";
 
-        /// <summary>
-        /// Регион
-        /// </summary>
-        public string Region { get; set; } = "";
-    }
+    /// <summary>
+    /// Регион
+    /// </summary>
+    public string Region { get; set; } = "";
+
+    public string? HouseNumber { get; set; }
+    public int? Apartment { get; set; }
 }

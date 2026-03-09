@@ -22,8 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities/" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Entities\" />
   </ItemGroup>
 </Project>

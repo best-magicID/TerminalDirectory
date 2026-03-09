@@ -1,15 +1,14 @@
-﻿namespace task.Entities
-{
-    public class Coordinates
-    {
-        /// <summary>
-        /// Широта
-        /// </summary>
-        public double Latitude { get; set; }
+﻿namespace task.Entities;
 
-        /// <summary>
-        /// Долгота
-        /// </summary>
-        public double Longitude { get; set; }
-    }
+public class Coordinates
+{
+    /// <summary>
+    /// Широта
+    /// </summary>
+    public double Latitude { get; set; }
+
+    /// <summary>
+    /// Долгота
+    /// </summary>
+    public double Longitude { get; set; }
 }

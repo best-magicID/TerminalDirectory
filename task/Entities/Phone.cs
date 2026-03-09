@@ -1,15 +1,11 @@
-﻿namespace task.Entities
-{
-    public class Phone
-    {
-        /// <summary>
-        /// ID (первичный ключ)
-        /// </summary>
-        public int Id { get; set; }
+﻿namespace task.Entities;
 
-        /// <summary>
-        /// Номер телефона
-        /// </summary>
-        public string Number { get; set; } = "";
-    }
+public class Phone
+{
+    public int Id { get; set; }
+    public string PhoneNumber { get; set; }
+    public string? Additional { get; set; }
+
+    public int OfficeId { get; set; }
+    public Office Office { get; set; } = null!;
 }
