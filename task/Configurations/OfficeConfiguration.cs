@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using task.Entities;
+using TerminalDirectory.Entities;
 
 namespace TerminalDirectory.Configurations;
 
