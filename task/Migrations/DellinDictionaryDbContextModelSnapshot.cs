@@ -66,6 +66,10 @@ namespace TerminalDirectory.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityCode");
+
+                    b.HasIndex("Code");
+
                     b.ToTable("Offices");
                 });
 
