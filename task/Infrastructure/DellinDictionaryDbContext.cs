@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using TerminalDirectory.Entities;
 
 namespace TerminalDirectory.Infrastructure;
@@ -18,22 +17,13 @@ public class DellinDictionaryDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
+        builder.Entity<Office>()
+               .HasMany(o => o.Phones)
+               .WithOne(p => p.Office)
+               .HasForeignKey(p => p.OfficeId)
+               .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<Office>(entity =>
-        {
-            entity.HasIndex(o => o.CityCode);
-            entity.HasIndex(o => o.Code);
-
-            entity.OwnsOne(o => o.Coordinates);
-            entity.OwnsOne(o => o.Phones);
-        });
-
-        builder.Entity<Phone>(entity =>
-        {
-            entity.HasIndex(p => p.OfficeId);
-        });
-
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.Entity<Office>()
+               .OwnsOne(o => o.Coordinates);
     }
 }

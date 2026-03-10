@@ -1,7 +1,8 @@
-﻿using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using TerminalDirectory.Entities;
 using TerminalDirectory.Infrastructure;
+using TerminalDirectory.Models;
 
 namespace TerminalDirectory.Services;
 
@@ -59,6 +60,7 @@ public class TerminalImportService : BackgroundService
             var _dbContext = scope.ServiceProvider.GetRequiredService<DellinDictionaryDbContext>();
 
             var jsonPath = Path.Combine(AppContext.BaseDirectory, "files", "terminals.json");
+
             if (!File.Exists(jsonPath))
             {
                 _logger.LogWarning("JSON файл {Path} не найден.", jsonPath);
@@ -67,20 +69,27 @@ public class TerminalImportService : BackgroundService
 
             var json = await File.ReadAllTextAsync(jsonPath, stoppingToken);
 
-            var offices = JsonSerializer.Deserialize<List<Office>>(json, new JsonSerializerOptions
+            var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
-            }) ?? new List<Office>();
+            };
+
+            var root = JsonSerializer.Deserialize<TerminalFile>(json, options);
+
+            var offices = root?.City ?? new List<Office>();
 
             _logger.LogInformation("Loaded {Count} terminals from JSON", offices.Count);
 
             var oldCount = await _dbContext.Offices.CountAsync(stoppingToken);
+
             _dbContext.Offices.RemoveRange(_dbContext.Offices);
             await _dbContext.SaveChangesAsync(stoppingToken);
+
             _logger.LogInformation("Deleted {OldCount} old records", oldCount);
 
             await _dbContext.Offices.AddRangeAsync(offices, stoppingToken);
             await _dbContext.SaveChangesAsync(stoppingToken);
+
             _logger.LogInformation("Saved {NewCount} new terminals", offices.Count);
         }
         catch (Exception ex)

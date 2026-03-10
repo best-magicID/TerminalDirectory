@@ -8,31 +8,36 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
 {
     public void Configure(EntityTypeBuilder<Office> builder)
     {
+        // Первичный ключ
         builder.HasKey(x => x.Id);
 
+        // Индексы
         builder.HasIndex(x => x.Code);
         builder.HasIndex(x => x.CityCode);
 
-        builder.Property(x => x.CountryCode).IsRequired();
-        builder.Property(x => x.WorkTime).HasMaxLength(100);
+        builder.Property(x => x.CountryCode)
+               .IsRequired();
 
-        // Вложенные объекты
-        builder.OwnsOne(x => x.Address, a =>
-        {
-            a.Property(p => p.Street).HasMaxLength(200);
-            a.Property(p => p.City).HasMaxLength(100);
-            a.Property(p => p.Region).HasMaxLength(100);
-            a.Property(p => p.HouseNumber);
-            a.Property(p => p.Apartment);
-        });
+        builder.Property(x => x.WorkTime)
+               .HasMaxLength(100);
 
+        builder.Property(x => x.AddressStreet)
+               .HasMaxLength(200);
+
+        builder.Property(x => x.AddressCity)
+               .HasMaxLength(100);
+
+        builder.Property(x => x.AddressRegion)
+               .HasMaxLength(100);
+
+        // Координаты
         builder.OwnsOne(x => x.Coordinates, c =>
         {
             c.Property(p => p.Latitude);
             c.Property(p => p.Longitude);
         });
 
-        // Один-ко-многим с телефоном
+        // Связь
         builder.HasMany(x => x.Phones)
                .WithOne(p => p.Office)
                .HasForeignKey(p => p.OfficeId)
