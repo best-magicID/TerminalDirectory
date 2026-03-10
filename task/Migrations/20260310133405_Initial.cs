@@ -58,6 +58,16 @@ namespace TerminalDirectory.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Offices_CityCode",
+                table: "Offices",
+                column: "CityCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offices_Code",
+                table: "Offices",
+                column: "Code");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Phones_OfficeId",
                 table: "Phones",
                 column: "OfficeId");

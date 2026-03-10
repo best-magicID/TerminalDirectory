@@ -24,4 +24,10 @@
   <ItemGroup>
     <Folder Include="Infrastructure\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="files/terminals.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
