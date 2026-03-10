@@ -117,6 +117,12 @@ public class TerminalImportService : BackgroundService
         var offices = new List<Office>();
         foreach (var city in source.City)
         {
+            if (!city.CityId.HasValue)
+            {
+                _logger.LogWarning("City '{CityName}' has null cityID and will be skipped", city.Name);
+                continue;
+            }
+
             var cityTerminals = city.Terminals?.Terminal;
             if (cityTerminals is null)
             {
@@ -128,7 +134,7 @@ public class TerminalImportService : BackgroundService
                 var office = new Office
                 {
                     Code = terminal.Id,
-                    CityCode = city.CityId,
+                    CityCode = city.CityId.Value,
                     Uuid = terminal.Id,
                     Type = ResolveOfficeType(terminal),
                     CountryCode = "RU",
@@ -189,7 +195,7 @@ public class TerminalImportService : BackgroundService
         public string Name { get; set; } = string.Empty;
 
         [JsonPropertyName("cityID")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
         public SourceTerminals? Terminals { get; set; }
     }
