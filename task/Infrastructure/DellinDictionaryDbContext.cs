@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using task.Entities;
+using TerminalDirectory.Entities;
 
-namespace task.Infrastructure;
+namespace TerminalDirectory.Infrastructure;
 
 public class DellinDictionaryDbContext : DbContext
 {

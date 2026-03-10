@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
-using task.Entities;
-using task.Infrastructure;
+using TerminalDirectory.Entities;
+using TerminalDirectory.Infrastructure;
 
-namespace task.Services;
+namespace TerminalDirectory.Services;
 
 public class TerminalImportService : BackgroundService
 {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using task.Infrastructure;
-using task.Services;
+using TerminalDirectory.Infrastructure;
+using TerminalDirectory.Services;
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = Host.CreateApplicationBuilder(args);

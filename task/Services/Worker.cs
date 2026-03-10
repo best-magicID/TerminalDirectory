@@ -1,4 +1,4 @@
-namespace task.Services;
+namespace TerminalDirectory.Services;
 
 public class Worker : BackgroundService
 {

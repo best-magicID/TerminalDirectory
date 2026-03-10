@@ -1,4 +1,4 @@
-﻿namespace task.Entities;
+﻿namespace TerminalDirectory.Entities;
 
 public class Phone
 {

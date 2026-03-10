@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using task.Entities;
 
-namespace task.Configurations;
+namespace TerminalDirectory.Configurations;
 
 public class OfficeConfiguration : IEntityTypeConfiguration<Office>
 {
